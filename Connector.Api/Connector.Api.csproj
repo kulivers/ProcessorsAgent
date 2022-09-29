@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\InputServices.Api\InputServices.Api.csproj" />
+      <ProjectReference Include="..\OuputServices.Api\OuputServices.Api.csproj" />
+    </ItemGroup>
+
+</Project>
