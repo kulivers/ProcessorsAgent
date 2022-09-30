@@ -1,0 +1,10 @@
+processors:
+  - dll: D:\Work\ProcessorsAgent\Implementaion\ElasticProcessor\bin\Debug\net6.0\ElasticProcessor.dll
+    config: D:\Work\ProcessorsAgent\SuperAgent\config\processor-elastic.yaml
+    name: Elasticsearch writer1
+connectors:
+  - destination: Elasticsearch writer1
+    input: kafka
+    inputConfig: D:\Work\ProcessorsAgent\SuperAgent\config\input-kafka.yaml
+    output: 
+    outputConfig: D:\Work\ProcessorsAgent\SuperAgent\config\output-kafka.yaml
