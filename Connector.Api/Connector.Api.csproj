@@ -7,8 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InputServices.Api\InputServices.Api.csproj" />
-      <ProjectReference Include="..\OuputServices.Api\OuputServices.Api.csproj" />
+      <ProjectReference Include="..\IOServices.Api\IOServices.Api.csproj" />
     </ItemGroup>
 
 </Project>

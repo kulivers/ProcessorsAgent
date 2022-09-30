@@ -66,7 +66,7 @@ public class KafkaInput : IInputService, IDisposable
                 {
                     if (topicMetadata.Error.IsError)
                     {   
-                        throw new TopicNotAvailableException(topicMetadata.Topic, topicMetadata.Error.Reason);
+                        throw new TopicNotAvailableException2(topicMetadata.Topic, topicMetadata.Error.Reason);
                     }
                 }
             }

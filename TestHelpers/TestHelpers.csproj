@@ -11,8 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\InputServices\InputServices.csproj" />
-      <ProjectReference Include="..\OuputServices\OuputServices.csproj" />
+      <ProjectReference Include="..\IOServices\IOServices.csproj" />
       <ProjectReference Include="..\ProcessorsContainer\ProcessorsContainer.csproj" />
     </ItemGroup>
 

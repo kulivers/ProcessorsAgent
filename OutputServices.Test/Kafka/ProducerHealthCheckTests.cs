@@ -3,7 +3,7 @@ using OuputServices;
 
 namespace InputServices.Test;
 
-public class HealthCheckTests
+public class ProducerHealthCheckTests
 {
     public KafkaTestsHelper KafkaTestsHelper => new KafkaTestsHelper();
     public IAdminClient AdminClient { get; set; }

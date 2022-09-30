@@ -2,7 +2,7 @@ using Confluent.Kafka;
 
 namespace InputServices.Test;
 
-public class HealthCheckTests
+public class ConsumerHealthCheckTests
 {
     public KafkaTestsHelper KafkaTestsHelper => new KafkaTestsHelper();
     public IAdminClient AdminClient { get; set; }

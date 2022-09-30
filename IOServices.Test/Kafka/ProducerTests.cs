@@ -5,7 +5,7 @@ using OuputServices;
 
 namespace OutputServices.Test;
 
-public class SendingTests
+public class ProducerTests
 {
     public KafkaTestsHelper KafkaTestsHelper { get; set; }
     public IAdminClient AdminClient { get; set; }
