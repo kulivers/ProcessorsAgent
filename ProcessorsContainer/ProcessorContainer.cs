@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Reflection;
 using ElasticClient;
-using Localization.Processors;
 using Newtonsoft.Json;
 using Processor;
 using Processor.Api;

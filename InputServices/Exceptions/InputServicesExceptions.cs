@@ -2,7 +2,7 @@ using Localization;
 
 namespace Processor.Api.Exceptions;
 
-public class TopicNotAvailableException : Exception
+internal class TopicNotAvailableException : Exception
 {
     private static readonly string TopicNotAvailable = IOServicesRecources.TopicNotAvailable;
     

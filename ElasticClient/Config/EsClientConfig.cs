@@ -1,17 +1,19 @@
 ﻿using ElasticClient.Entities;
 using Localization.Libs;
-using Utils;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace ElasticClient;
 
 public class EsClientConfig
 {
+    private static readonly string WrongTypeOfFileNeedToBeYaml = UtilResources.WrongTypeOfFileNeedToBeYaml;
     private static readonly string UnknownAuthenticationType = ElasticClientResources.UnknownAuthenticationType;
     private const string Basic = "BASIC";
     private const string ApiKey = "APIKEY";
     private const string Barrier = "BARRIER";
     private const string OAuth = "OAUTH";
-    
+
 
     public HostConfig Host { get; set; }
     public AuthenticationConfig Authentication { get; set; }
@@ -53,9 +55,18 @@ public class EsClientConfig
             }
         }
     }
+
     public static EsClientConfig FromYaml(string path)
     {
-        return YamlConfigHelper.GetConfigFromCamelYaml<EsClientConfig>(path);
-    }
+        if (!path.EndsWith(".yaml"))
+        {
+            throw new ArgumentException(WrongTypeOfFileNeedToBeYaml);
+        }
 
+        var deserializer = new DeserializerBuilder()
+            .WithNamingConvention(CamelCaseNamingConvention.Instance)
+            .Build();
+        var fileContent = File.ReadAllText(path);
+        return deserializer.Deserialize<EsClientConfig>(fileContent);
+    }
 }

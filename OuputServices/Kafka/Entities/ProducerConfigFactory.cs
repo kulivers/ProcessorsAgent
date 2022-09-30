@@ -1,18 +1,31 @@
 ﻿using System.Net;
 using Confluent.Kafka;
 using Localization;
-using Utils;
+using Localization.Libs;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
 namespace OuputServices.Kafka.Entities
 {
     public class ProducerConfigFactory
     {
         private static readonly string NoBootstrapServerSpecified = IOServicesRecources.NoBootstrapServerSpecified;
+        public static readonly string WrongTypeOfFileNeedToBeYaml = UtilResources.WrongTypeOfFileNeedToBeYaml;
+
         private ClientConfig ClientConfig { get; }
 
         private static ClientConfig FromYaml(string path)
         {
-            return YamlConfigHelper.GetConfigFromCamelYaml<ClientConfig>(path);
+            if (!path.EndsWith(".yaml"))
+            {
+                throw new ArgumentException(WrongTypeOfFileNeedToBeYaml);
+            }
+
+            var deserializer = new DeserializerBuilder()
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                .Build();
+            var fileContent = File.ReadAllText(path);
+            return deserializer.Deserialize<ClientConfig>(fileContent);
         }
 
         public ProducerConfigFactory(string path) : this(FromYaml(path))

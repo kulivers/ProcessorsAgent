@@ -10,7 +10,6 @@
       <ProjectReference Include="..\Connector.Api\Connector.Api.csproj" />
       <ProjectReference Include="..\InputServices\InputServices.csproj" />
       <ProjectReference Include="..\OuputServices\OuputServices.csproj" />
-      <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,6 +1,5 @@
 using Localization.SuperAgent;
 using Microsoft.VisualBasic;
-using Newtonsoft.Json;
 using Processor;
 using ProcessorsRunner;
 
