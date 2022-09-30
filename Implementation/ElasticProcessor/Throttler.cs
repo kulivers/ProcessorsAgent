@@ -23,7 +23,7 @@ internal class Throttler
             AllowedToSend = true;
         }, null, TimeSpan.Zero, new TimeSpan(0, 0, 1));
     }
-    public void WaitIfBigLoad()
+    public void Wait()
     {
         CurrentMessagesCount++;
         if (CurrentMessagesCount > MessagesPerSecondLimit)

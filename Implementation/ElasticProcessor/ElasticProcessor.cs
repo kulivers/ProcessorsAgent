@@ -8,14 +8,16 @@ namespace ElasticClient;
 [ProcessElement(nameof(ElasticProcessor), ProcessingAttributeBehaviourType.Processor)]
 public class ElasticProcessor : IProcessor<EsRequest, EsResponse>
 {
+    
     private readonly EsClient _esClient;
 
     private readonly string NotSupportedConfigType = ProcessorResources.NotSupportedConfigType;
     public string Name => ProcessorConfig.Name;
     public ProcessorConfig ProcessorConfig { get; }
     public double SecondsToResponse => 5;
-
     private Throttler Throttler { get; set; }
+    
+    
     public ElasticProcessor(ProcessorConfig config)
     {
         if (config.ConfigType != ConfigType.Yaml)
@@ -43,7 +45,7 @@ public class ElasticProcessor : IProcessor<EsRequest, EsResponse>
 
     public async Task<ProcessorOutput<EsResponse>> ProcessAsync(EsRequest value, CancellationToken token)
     {
-        Throttler.WaitIfBigLoad();
+        Throttler.Wait();
         try
         {
             var response = await _esClient.WriteRecordAsync(value, token);
