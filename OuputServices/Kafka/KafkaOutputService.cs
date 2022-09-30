@@ -3,6 +3,7 @@ using InputServices;
 using IOServices.Api;
 using KafkaInteractor;
 using Localization;
+using Newtonsoft.Json;
 using Processor.Api.Exceptions;
 
 namespace OuputServices;
@@ -62,7 +63,8 @@ public class KafkaOutputService : IOutputService, IDisposable
             return await SendString(message, token);
         }
 
-        throw new NotImplementedException(string.Format(CantSendMessage, toSend.GetType()));
+        var json = JsonConvert.SerializeObject(toSend);
+        return await SendString(json, token);
     }
 
     private void CallOnSendEvent(object deliveryResult)

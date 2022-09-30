@@ -5,7 +5,9 @@ namespace ProcessorsRunner;
 
 public class Connector : IConnector
 {
+    
     public IInputService InputService { get; }
+
     public IOutputService? OutputService { get; }
     public string DestinationProcessor { get; }
     private const double SecondsToResponse = 5;
@@ -17,11 +19,14 @@ public class Connector : IConnector
         OutputService = outputService;
         DestinationProcessor = destinationProcessor;
         InputService.OnReceive += CallOnReceive;
+        
     }
 
     private void CallOnReceive(object? sender, object recieved)
     {
-        OnReceive?.Invoke(sender, (string)recieved);
+        var casted = (string)recieved;
+        OnReceive?.Invoke(sender, casted);
+        
     }
 
     public async Task StartReceive(CancellationToken token)
@@ -59,3 +64,4 @@ public class Connector : IConnector
         }
     }
 }
+

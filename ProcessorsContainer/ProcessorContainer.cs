@@ -10,7 +10,7 @@ using ProcessorsRunner;
 
 public class ProcessorContainer : IProcessorsContainer
 {
- public List<IProcessor?> Processors { get; }
+    public List<IProcessor?> Processors { get; }
 
     public ProcessorContainer(ProcessorsConfigs processorsConfigs)
     {
@@ -116,7 +116,6 @@ public class ProcessorContainer : IProcessorsContainer
         {
             throw new UnknownProcessorException(processorName);
         }
-
         var processorType = processor.GetType();
         var (tIn, tOut) = GetInputOutputTypes(processorType);
         var processorOutput = typeof(ProcessorOutput<>);
@@ -125,7 +124,8 @@ public class ProcessorContainer : IProcessorsContainer
         var method = processorType.GetMethods(BindingFlags.Public | BindingFlags.Instance)
             .First(mi => mi.ReturnType == tOut && mi.GetParameters().Any(p => p.ParameterType == tIn) &&
                          mi.Name == "Process");
-        return method.Invoke(processor, new[] { input, token });
+        var result =  method.Invoke(processor, new[] { input, token });
+        return result;
     }
 
     public IEnumerator<IProcessor> GetEnumerator()

@@ -1,13 +1,10 @@
 using System.Net.Http.Headers;
 using ElasticClient;
 using ElasticClient.Extensions;
-using Localization.Libs;
 using Processor.Api.Exceptions;
 
 public class EsClient
 {
-    private readonly string ElasticSearchNotHealthy = ElasticClientResources.ElasticSearchNotHealthy;
-
     private const string AuthorizationHeaderKey = "Authorization";
     private const string ContentTypeHeaderValue = "application/json";
     private HostConfig HostConfig { get; }

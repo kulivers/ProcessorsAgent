@@ -12,6 +12,7 @@ public class SuperAgent
     public IProcessorsContainer ProcessorsContainer { get; }
     public List<IConnector> Connectors { get; set; }
 
+
     public SuperAgent(AgentConfig agentConfig) : this(new ProcessorsConfigs(agentConfig.Processors), new ConnectorsConfig(agentConfig.Connectors))
     {
     }
@@ -22,7 +23,6 @@ public class SuperAgent
         _connectorsConfig = connectorsConfig;
         ProcessorsContainer = new ProcessorContainer(processorsConfigs);
         InitConnectors(connectorsConfig);
-        ThrowIfConfigsNotValid();
         CheckHealth();
     }
 
@@ -30,8 +30,8 @@ public class SuperAgent
     {
         Connectors = new List<IConnector>();
         var factory = new ConnectorFactory();
-            
-        
+
+
         foreach (var connectorConfig in connectorsConfig.Connectors)
         {
             if (connectorConfig.Input == InputService.Kafka)
@@ -46,11 +46,12 @@ public class SuperAgent
             {
                 var destinationProcessor = connector.DestinationProcessor;
                 var cts = new CancellationTokenSource(TimeSpan.FromSeconds(1));
+                
                 var response = ProcessorsContainer.Process(destinationProcessor, data, cts.Token);
                 if (response != null)
                 {
                     connector.SendToOutputService(response);
-                };
+                }
             };
         }
     }
@@ -111,3 +112,4 @@ public class SuperAgent
         }
     }
 }
+

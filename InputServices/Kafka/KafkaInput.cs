@@ -65,8 +65,7 @@ public class KafkaInput : IInputService, IDisposable
                 foreach (var topicMetadata in metadata.Topics)
                 {
                     if (topicMetadata.Error.IsError)
-                    {
-                        
+                    {   
                         throw new TopicNotAvailableException(topicMetadata.Topic, topicMetadata.Error.Reason);
                     }
                 }
