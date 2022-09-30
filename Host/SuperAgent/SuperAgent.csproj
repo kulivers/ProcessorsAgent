@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Api\Connector.Api\Connector.Api.csproj" />
+      <ProjectReference Include="..\..\Api\Processors.Api\Processors.Api.csproj" />
+      <ProjectReference Include="..\..\Core\Connector\Connector.csproj" />
+      <ProjectReference Include="..\..\Core\Localization\Localization.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="YamlDotNet" Version="12.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="ProcessorsContainer">
+        <HintPath>bin\Debug\net6.0\ProcessorsContainer.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

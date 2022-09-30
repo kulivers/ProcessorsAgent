@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Input" />
+      <Folder Include="Output" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Confluent.Kafka" Version="1.9.4-RC1" />
+      <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+      <PackageReference Include="YamlDotNet" Version="12.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Api\IOServices.Api\IOServices.Api.csproj" />
+      <ProjectReference Include="..\Localization\Localization.csproj" />
+    </ItemGroup>
+
+</Project>
